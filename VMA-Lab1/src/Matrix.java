@@ -17,9 +17,21 @@ public class Matrix {
         for (int i = 0; i < matr.length; i++) {
             for (int j = 0; j < matr[0].length; j++) {
                 Formatter frm = new Formatter();
-                System.out.print(" " + frm.format("%3.6e", matr[i][j]) + " ");
+                System.out.print(" " + frm.format("% 3.6e", matr[i][j]) + " ");
             }
             System.out.println();
+        }
+        System.out.println();
+    }
+
+    public static void printAugmentedMatrix(double[][] matr, double[][] vector) {
+        for (int i = 0; i < matr.length; i++) {
+            for (int j = 0; j < matr[0].length; j++) {
+                Formatter frm = new Formatter();
+                System.out.print(" " + frm.format("% 3.6e", matr[i][j]) + " ");
+            }
+            Formatter frm = new Formatter();
+            System.out.println(" | " + frm.format("% 3.6e", vector[i][0]));
         }
         System.out.println();
     }

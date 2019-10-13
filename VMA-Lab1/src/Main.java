@@ -1,5 +1,3 @@
-import java.util.Formatter;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -20,21 +18,23 @@ public class Main {
             vectorCopy[i] = vector[i].clone();
         }
 
-        double[][] E = {{1, 0, 0, 0},
-                {0, 1, 0, 0},
-                {0, 0, 1, 0},
-                {0, 0, 0, 1}};
+        System.out.println("The original augmented matrix:");
+        Matrix.printAugmentedMatrix(matrCopy, vectorCopy);
 
-        Gauss.printMatrix(matrCopy, vectorCopy);
-        det = Gauss.solution(matrCopy, vectorCopy, E);
-        Gauss.printMatrix(matrCopy, vectorCopy);
+        det = Gauss.solution(matrCopy, vectorCopy);
+        System.out.println("Vector of solutions:");
+        Matrix.printMatr(vectorCopy);
 
-        Formatter frm = new Formatter();
-        System.out.println(frm.format("%3.6e", det));
-        Gauss.printMatrix(E, vectorCopy);
+        System.out.printf("Determinant is % 3.6e \n", det);
 
-        Matrix.printMatr(Matrix.multiple(E, matr));//показывает единичную матрицу с погрешностью
+        System.out.println("The inverse matrix:");
+        double[][] inverseMatr = Gauss.inverseMatr(matr);
+        Matrix.printMatr(inverseMatr);
 
+        System.out.println("The product of the original and inverse matrix:");
+        Matrix.printMatr(Matrix.multiple(inverseMatr, matr));
+
+        System.out.println("The vector of residuals:");
         Matrix.printMatr(Matrix.diff(Matrix.multiple(matr, vectorCopy), vector));
     }
 }
